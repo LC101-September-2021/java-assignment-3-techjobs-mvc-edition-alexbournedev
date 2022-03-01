@@ -5,6 +5,7 @@ import org.launchcode.techjobs.mvc.models.JobData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,12 +29,12 @@ public class SearchController {
         return "search";
     }
 
-    @RequestMapping("results")
+    @PostMapping(value = "results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
 
         ArrayList<Job> jobs;
 
-        if (searchTerm.equals("all") || searchType.equals("all")){
+        if (searchTerm.equals("all")){
             jobs = JobData.findAll();
         }
         else {
